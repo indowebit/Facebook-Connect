@@ -1,2 +1,2 @@
-- Dump Sql Query to your Mysql database
+- Dump Sql Query to your Mysql database in file table.sql
 - Setting configuration mysql connection and facebook application config in lib/user_session.php
