@@ -3,13 +3,13 @@
   
   class UserSession {
     private $_mysql_host = 'localhost'; 
-    private $_mysql_user = 'root'; 
-    private $_mysql_pwd = ''; 
-    private $_mysql_db = 'fb_connect';
-    private $_mysql_table = 'users';
+    private $_mysql_user = 'your_user'; 
+    private $_mysql_pwd = 'your_password'; 
+    private $_mysql_db = 'your_database';
+    private $_mysql_table = 'your_table';
     
     private $facebook_app_id = 'YOUR_FACEBOOK_APP_ID'; 
-    private $facebook_secret = 'YOUR FACEBOOK_SECRET_KEY'; 
+    private $facebook_secret = 'YOUR_FACEBOOK_APP_SECRET'; 
     private $facebook_extended_permission = 'email,user_birthday,status_update,publish_stream,user_photos,user_videos'; 
     
 
@@ -130,11 +130,11 @@
     public function login_normal_user($username,$password){
         $ok = false;
         $query = "SELECT username FROM %s WHERE username ='%s' AND password = PASSWORD('%s')"; 
-        $sql = sprintf($query,$this->_mysql_table,
+        $this->connect_to_db();
+		$sql = sprintf($query,$this->_mysql_table,
                        mysql_real_escape_string($username),
                        mysql_real_escape_string($password)
                ); 
-        $this->connect_to_db();
         $query = mysql_query($sql) or die(mysql_error()); 
         $result = mysql_fetch_array($query);   
         if (!empty($result)){
